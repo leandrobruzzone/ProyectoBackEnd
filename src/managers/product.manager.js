@@ -10,8 +10,14 @@ export default class ProductManager {
     try {
       if (fs.existsSync(this.path)) {
         const products = await fs.promises.readFile(this.path, "utf8");
-        return JSON.parse(products);
-      } else return [];
+        const parsedProducts = JSON.parse(products);
+        if (limit) {
+          return parsedProducts.slice(0, limit);
+        }
+        return parsedProducts;
+      } else {
+        return [];
+      }
     } catch (error) {
       console.log(error);
     }

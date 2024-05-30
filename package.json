@@ -5,6 +5,7 @@
   "main": "./src/server.js",
   "type": "module",
   "scripts": {
+    "start": "node server.js",
     "dev": "nodemon server.js"
   },
   "repository": {
@@ -19,8 +20,11 @@
   "homepage": "https://github.com/leandrobruzzone/ProyectoBackEnd#readme",
   "dependencies": {
     "express": "^4.19.2",
+    "express-handlebars": "^7.1.2",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
+    "socket.io": "^4.7.5",
+    "sweetalert2": "^11.11.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

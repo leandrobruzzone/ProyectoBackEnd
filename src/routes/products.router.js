@@ -24,7 +24,7 @@ router.get("/:idProd", async (req, res) => {
   try {
     const { idProd } = req.params;
     const product = await productManager.getProductById(idProd);
-    if (!product) res.status(404).json({ msg: "product not found" });
+    if (!product) res.status(404).json({ msg: "Producto no encontrado" });
     else res.status(200).json(product);
   } catch (error) {
     res.status(500).json({ msg: error.message });
@@ -46,7 +46,8 @@ router.put("/:idProd", async (req, res) => {
   try {
     const { idProd } = req.params;
     const prodUpd = await productManager.updateProduct(req.body, idProd);
-    if (!prodUpd) res.status(404).json({ msg: "Error updating prod" });
+    if (!prodUpd)
+      res.status(404).json({ msg: "Error en la carga del producto" });
     res.status(200).json(prodUpd);
   } catch (error) {
     res.status(500).json({ msg: error.message });
@@ -57,11 +58,12 @@ router.delete("/:idProd", async (req, res) => {
   try {
     const { idProd } = req.params;
     const delProd = await productManager.deleteProduct(idProd);
-    if (!delProd) res.status(404).json({ msg: "Error delete product" });
+    if (!delProd)
+      res.status(404).json({ msg: "Error al intentar eliminar el producto" });
     else
       res
         .status(200)
-        .json({ msg: `product id: ${idProd} deleted successfully` });
+        .json({ msg: `Producto id: ${idProd} Eliminado con éxito` });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
@@ -70,7 +72,7 @@ router.delete("/:idProd", async (req, res) => {
 router.delete("/", async (req, res) => {
   try {
     await productManager.deleteFile();
-    res.send("products deleted successfully");
+    res.send("Producto eliminado con éxito.");
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
